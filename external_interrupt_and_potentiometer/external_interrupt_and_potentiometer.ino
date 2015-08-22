@@ -33,6 +33,7 @@ void setup() {
     * https://forums.adafruit.com/viewtopic.php?f=25&t=57650:
   */
   pinMode(0, INPUT_PULLUP); // configure pin to behave as input
+  // when button is pushed, run buttonPushed()
   attachInterrupt(2, buttonPushed, FALLING); // listen for high to low
 
   strip.begin();
@@ -51,7 +52,7 @@ void buttonPushed() {
 // Set strip brightness based on potentiometer value
 void setBrightness() {
   // convert analogRead's range of 0 to 1023 to brightness range 0 to 255
-  uint8_t brightness = map(analogRead(9), 0, 1023, 0, 255);
+  uint8_t brightness = map(analogRead(POT_PIN), 0, 1023, 0, 255);
   strip.setBrightness(brightness);
 }
 
